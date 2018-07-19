@@ -20,6 +20,7 @@ security:
                 check_path: /login
                 username_path: login
                 password_path: password
+                provider: userProvider
                 success_handler: lexik_jwt_authentication.handler.authentication_success
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
         register:
