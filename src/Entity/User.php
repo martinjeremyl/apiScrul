@@ -339,4 +339,20 @@ class User implements UserInterface, \Serializable
         $this->plainPassword = $plainPassword;
     }
 
+    /**
+     * @param mixed $username
+     */
+    public function setUsername($username): void
+    {
+        $this->username = $username;
+    }
+
+    /**
+     * @param mixed $roles
+     */
+    public function setRoles($roles): void
+    {
+        $this->roles = $roles;
+    }
+
 }
