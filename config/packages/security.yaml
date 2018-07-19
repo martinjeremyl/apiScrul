@@ -17,7 +17,7 @@ security:
             stateless: true
             anonymous: true
             json_login:
-                check_path: /login_check
+                check_path: /login
                 username_path: email
                 password_path: password
                 success_handler: lexik_jwt_authentication.handler.authentication_success
@@ -38,6 +38,7 @@ security:
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: IS_AUTHENTICATED_FULLY }
 
             # activate different ways to authenticate
 
