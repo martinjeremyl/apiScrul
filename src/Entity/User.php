@@ -104,7 +104,7 @@ class User implements UserInterface, \Serializable
     public function __construct()
     {
         $this->isActive = true;
-        $this->imputations = new PersistentCollection();
+        $this->imputations = new ArrayCollection();
         // may not be needed, see section on salt below
         // $this->salt = md5(uniqid('', true));
     }
@@ -214,7 +214,7 @@ class User implements UserInterface, \Serializable
     /**
      * @return Imputation[]
      */
-    public function getImputations(): PersistentCollection
+    public function getImputations()
     {
         return $this->imputations;
     }
