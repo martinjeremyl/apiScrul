@@ -35,4 +35,8 @@ class AuthController extends AbstractController
     {
         return new Response(sprintf('Logged in as %s', $this->getUser()->getUsername()));
     }
+
+    public function login() {
+
+    }
 }
