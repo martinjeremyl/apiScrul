@@ -11,6 +11,7 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\PersistentCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -103,7 +104,7 @@ class User implements UserInterface, \Serializable
     public function __construct()
     {
         $this->isActive = true;
-        $this->imputations = new ArrayCollection();
+        $this->imputations = new PersistentCollection();
         // may not be needed, see section on salt below
         // $this->salt = md5(uniqid('', true));
     }
@@ -213,7 +214,7 @@ class User implements UserInterface, \Serializable
     /**
      * @return Imputation[]
      */
-    public function getImputations(): ArrayCollection
+    public function getImputations(): PersistentCollection
     {
         return $this->imputations;
     }
