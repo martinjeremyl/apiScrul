@@ -11,6 +11,5 @@ api:
     controller: App\Controller\AuthController::api
 
 login_check:
-    path:     /login
-    controller: App\Controller\AuthController::login
+    path:     /login_check
     methods:  [POST]
