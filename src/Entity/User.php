@@ -105,6 +105,11 @@ class User implements UserInterface, \Serializable
     {
         $this->isActive = true;
         $this->imputations = new ArrayCollection();
+        $this->teams = new ArrayCollection();
+        $this->subtaskAssignees = new ArrayCollection();
+        $this->subtaskFollowers = new ArrayCollection();
+        $this->taskAssignees = new ArrayCollection();
+        $this->taskFollowers = new ArrayCollection();
         // may not be needed, see section on salt below
         // $this->salt = md5(uniqid('', true));
     }
