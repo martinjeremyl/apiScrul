@@ -14,8 +14,7 @@ security:
             security: false
         main:
             pattern:    ^/
-            http_basic: ~
-            provider: userProvider
+            security: false
 
             # activate different ways to authenticate
 
