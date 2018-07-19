@@ -1,12 +1,12 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     encoders:
-        App\Entity\User:
+        App\Entity\Person:
             algorithm: bcrypt
     providers:
         userProvider:
             entity:
-                class: App\Entity\User
+                class: App\Entity\Person
                 property: username
     firewalls:
         dev:

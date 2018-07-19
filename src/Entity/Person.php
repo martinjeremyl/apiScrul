@@ -1,12 +1,12 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: jeremy martin
+ * Person: jeremy martin
  * Date: 18/07/2018
  * Time: 20:27
  */
 
-// src/Entity/User.php
+// src/Entity/Personon.php
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
@@ -21,7 +21,7 @@ use ApiPlatform\Core\Annotation\ApiSubresource;
  * @ORM\Entity
  * @ApiResource
  */
-class User implements UserInterface, \Serializable
+class Person implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id

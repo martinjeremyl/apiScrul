@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: jeremy martin
+ * Person: jeremy martin
  * Date: 18/07/2018
  * Time: 20:20
  */
@@ -48,9 +48,9 @@ class Imputation
     public $task;
 
     /**
-     * @var User The User for this imputation.
+     * @var Person The Person for this imputation.
      *
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="imputations")
+     * @ORM\ManyToOne(targetEntity="Person", inversedBy="imputations")
      */
     public $user;
 
@@ -110,17 +110,17 @@ class Imputation
     }
 
     /**
-     * @return User
+     * @return Person
      */
-    public function getUser(): User
+    public function getUser(): Person
     {
         return $this->user;
     }
 
     /**
-     * @param User $user
+     * @param Person $user
      */
-    public function setUser(User $user): void
+    public function setUser(Person $user): void
     {
         $this->user = $user;
     }

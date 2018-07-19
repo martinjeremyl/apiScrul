@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: jeremy martin
+ * Person: jeremy martin
  * Date: 18/07/2018
  * Time: 20:20
  */
@@ -58,7 +58,7 @@ class Team
     private $projects;
 
     /**
-     * @ORM\ManyToMany(targetEntity="User", inversedBy="teams")
+     * @ORM\ManyToMany(targetEntity="Person", inversedBy="teams")
      * @ORM\JoinTable(
      *  name="team_members",
      *  joinColumns={

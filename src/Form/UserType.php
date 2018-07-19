@@ -1,14 +1,14 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: jeremy martin
+ * Person: jeremy martin
  * Date: 19/07/2018
  * Time: 13:52
  */
 
 namespace App\Form;
 
-use App\Entity\User;
+use App\Entity\Person;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -35,7 +35,7 @@ class UserType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => User::class,
+            'data_class' => Person::class,
         ));
     }
 }

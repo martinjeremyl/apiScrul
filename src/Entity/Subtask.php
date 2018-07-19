@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: jeremy martin
+ * Person: jeremy martin
  * Date: 18/07/2018
  * Time: 20:20
  */
@@ -61,7 +61,7 @@ class Subtask
     public $task;
 
     /**
-     * @ORM\ManyToMany(targetEntity="User", inversedBy="subtaskAssignees")
+     * @ORM\ManyToMany(targetEntity="Person", inversedBy="subtaskAssignees")
      * @ORM\JoinTable(
      *  name="subtask_assignees",
      *  joinColumns={
@@ -75,7 +75,7 @@ class Subtask
     private $assignees;
 
     /**
-     * @ORM\ManyToMany(targetEntity="User", inversedBy="subtaskFollowers")
+     * @ORM\ManyToMany(targetEntity="Person", inversedBy="subtaskFollowers")
      * @ORM\JoinTable(
      *  name="subtask_followers",
      *  joinColumns={

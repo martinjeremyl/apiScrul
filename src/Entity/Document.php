@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: jeremy martin
+ * Person: jeremy martin
  * Date: 18/07/2018
  * Time: 21:14
  */
@@ -56,7 +56,7 @@ class Document
     public $task;
 
     /**
-     * @ORM\OneToOne(targetEntity="User", mappedBy="avatar")
+     * @ORM\OneToOne(targetEntity="Person", mappedBy="avatar")
      */
     public $user;
 

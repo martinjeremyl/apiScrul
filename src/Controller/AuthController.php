@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: jeremy martin
+ * Person: jeremy martin
  * Date: 19/07/2018
  * Time: 14:01
  */
@@ -11,7 +11,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use App\Entity\User;
+use App\Entity\Person;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AuthController extends AbstractController
@@ -23,13 +23,13 @@ class AuthController extends AbstractController
         $username = $request->request->get('_username');
         $password = $request->request->get('_password');
         $email = $request->request->get('_email');
-        $user = new User($username);
+        $user = new Person($username);
         $user->setPassword($encoder->encodePassword($user, $password));
         $user->setEmail($email);
         $user->setUsername($username);
         $em->persist($user);
         $em->flush();
-        return new Response(sprintf('User %s successfully created', $user->getUsername()));
+        return new Response(sprintf('Person %s successfully created', $user->getUsername()));
     }
     public function api()
     {
