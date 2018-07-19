@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Entity\User;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+
 class AuthController extends AbstractController
 {
     public function register(Request $request, UserPasswordEncoderInterface $encoder)
@@ -22,6 +23,7 @@ class AuthController extends AbstractController
         $username = $request->request->get('_username');
         $password = $request->request->get('_password');
         $email = $request->request->get('_email');
+        dump($email);exit;
         $user = new User($username);
         $user->setPassword($encoder->encodePassword($user, $password));
         $user->setEmail($email);
