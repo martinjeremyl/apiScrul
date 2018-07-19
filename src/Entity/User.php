@@ -213,7 +213,7 @@ class User implements UserInterface, \Serializable
     /**
      * @return Imputation[]
      */
-    public function getImputations(): array
+    public function getImputations(): ArrayCollection
     {
         return $this->imputations;
     }
