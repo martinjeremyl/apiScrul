@@ -73,6 +73,11 @@ class Category
     private $tasks;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Project", mappedBy="categories")
+     */
+    private $projects;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -120,5 +125,52 @@ class Category
         $this->position = $position;
     }
 
+    /**
+     * @return string
+     */
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function setDescription(string $description): void
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * @return Task[]
+     */
+    public function getTasks(): array
+    {
+        return $this->tasks;
+    }
+
+    /**
+     * @param Task[] $tasks
+     */
+    public function setTasks(array $tasks): void
+    {
+        $this->tasks = $tasks;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProjects()
+    {
+        return $this->projects;
+    }
+
+    /**
+     * @param mixed $projects
+     */
+    public function setProjects($projects): void
+    {
+        $this->projects = $projects;
+    }
 
 }

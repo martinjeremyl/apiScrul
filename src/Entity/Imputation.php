@@ -48,6 +48,20 @@ class Imputation
     public $task;
 
     /**
+     * @var User The User for this imputation.
+     *
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="imputations")
+     */
+    public $user;
+
+    /**
+     * @var \DateTimeInterface The publication date of this book.
+     *
+     * @ORM\Column(type="datetime")
+     */
+    public $imputationDate;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -77,6 +91,54 @@ class Imputation
     public function setHours(int $hours): void
     {
         $this->hours = $hours;
+    }
+
+    /**
+     * @return Task
+     */
+    public function getTask(): Task
+    {
+        return $this->task;
+    }
+
+    /**
+     * @param Task $task
+     */
+    public function setTask(Task $task): void
+    {
+        $this->task = $task;
+    }
+
+    /**
+     * @return User
+     */
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     */
+    public function setUser(User $user): void
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * @return \DateTimeInterface
+     */
+    public function getImputationDate(): \DateTimeInterface
+    {
+        return $this->imputationDate;
+    }
+
+    /**
+     * @param \DateTimeInterface $imputationDate
+     */
+    public function setImputationDate(\DateTimeInterface $imputationDate): void
+    {
+        $this->imputationDate = $imputationDate;
     }
 
 }

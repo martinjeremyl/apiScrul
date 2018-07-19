@@ -11,7 +11,7 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Class Task
  * @package App\Entity
@@ -93,5 +93,237 @@ class Task
      * @ORM\OneToMany(targetEntity="Subtask", mappedBy="task")
      */
     public $subtasks;
+
+    /**
+     * @var \DateTimeInterface The publication date of this book.
+     *
+     * @ORM\Column(type="datetime")
+     */
+    public $deadline;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="taskAssignees")
+     * @ORM\JoinTable(
+     *  name="task_assignees",
+     *  joinColumns={
+     *      @ORM\JoinColumn(name="task_id", referencedColumnName="id")
+     *  },
+     *  inverseJoinColumns={
+     *      @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *  }
+     * )
+     */
+    private $assignees;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="taskFollowers")
+     * @ORM\JoinTable(
+     *  name="task_followers",
+     *  joinColumns={
+     *      @ORM\JoinColumn(name="task_id", referencedColumnName="id")
+     *  },
+     *  inverseJoinColumns={
+     *      @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *  }
+     * )
+     */
+    private $followers;
+
+    public function __construct() {
+        $this->assignees = new ArrayCollection();
+        $this->followers = new ArrayCollection();
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function setDescription(string $description): void
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * @return category
+     */
+    public function getCategory(): category
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param category $category
+     */
+    public function setCategory(category $category): void
+    {
+        $this->category = $category;
+    }
+
+    /**
+     * @return ComplexityPoint
+     */
+    public function getComplexityPoint(): ComplexityPoint
+    {
+        return $this->complexityPoint;
+    }
+
+    /**
+     * @param ComplexityPoint $complexityPoint
+     */
+    public function setComplexityPoint(ComplexityPoint $complexityPoint): void
+    {
+        $this->complexityPoint = $complexityPoint;
+    }
+
+    /**
+     * @return Project
+     */
+    public function getProject(): Project
+    {
+        return $this->project;
+    }
+
+    /**
+     * @param Project $project
+     */
+    public function setProject(Project $project): void
+    {
+        $this->project = $project;
+    }
+
+    /**
+     * @return Document[]
+     */
+    public function getDocuments(): array
+    {
+        return $this->documents;
+    }
+
+    /**
+     * @param Document[] $documents
+     */
+    public function setDocuments(array $documents): void
+    {
+        $this->documents = $documents;
+    }
+
+    /**
+     * @return Imputation[]
+     */
+    public function getImputations(): array
+    {
+        return $this->imputations;
+    }
+
+    /**
+     * @param Imputation[] $imputations
+     */
+    public function setImputations(array $imputations): void
+    {
+        $this->imputations = $imputations;
+    }
+
+    /**
+     * @return Subtask[]
+     */
+    public function getSubtasks(): array
+    {
+        return $this->subtasks;
+    }
+
+    /**
+     * @param Subtask[] $subtasks
+     */
+    public function setSubtasks(array $subtasks): void
+    {
+        $this->subtasks = $subtasks;
+    }
+
+    /**
+     * @return \DateTimeInterface
+     */
+    public function getDeadline(): \DateTimeInterface
+    {
+        return $this->deadline;
+    }
+
+    /**
+     * @param \DateTimeInterface $deadline
+     */
+    public function setDeadline(\DateTimeInterface $deadline): void
+    {
+        $this->deadline = $deadline;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAssignees()
+    {
+        return $this->assignees;
+    }
+
+    /**
+     * @param mixed $assignees
+     */
+    public function setAssignees($assignees): void
+    {
+        $this->assignees = $assignees;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFollowers()
+    {
+        return $this->followers;
+    }
+
+    /**
+     * @param mixed $followers
+     */
+    public function setFollowers($followers): void
+    {
+        $this->followers = $followers;
+    }
 
 }

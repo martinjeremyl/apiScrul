@@ -54,6 +54,45 @@ class User implements UserInterface, \Serializable
      */
     private $isActive;
 
+    /**
+     * @var Imputation[] List of imputations.
+     *
+     * @ORM\OneToMany(targetEntity="Imputation", mappedBy="user")
+     */
+    private $imputations;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Document", inversedBy="user")
+     * @ORM\JoinColumn(referencedColumnName="id", unique=true)
+     * @ApiSubresource
+     */
+    public $avatar;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Team", mappedBy="members")
+     */
+    private $teams;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Team", mappedBy="assignees")
+     */
+    private $subtaskAssignees;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Team", mappedBy="followers")
+     */
+    private $subtaskFollowers;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Team", mappedBy="assignees")
+     */
+    private $taskAssignees;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Team", mappedBy="followers")
+     */
+    private $taskFollowers;
+
     public function __construct()
     {
         $this->isActive = true;
@@ -111,4 +150,165 @@ class User implements UserInterface, \Serializable
     {
         return $user instanceof self && $user->id === $this->id;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email): void
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getisActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * @param mixed $isActive
+     */
+    public function setIsActive($isActive): void
+    {
+        $this->isActive = $isActive;
+    }
+
+    /**
+     * @return Imputation[]
+     */
+    public function getImputations(): array
+    {
+        return $this->imputations;
+    }
+
+    /**
+     * @param Imputation[] $imputations
+     */
+    public function setImputations(array $imputations): void
+    {
+        $this->imputations = $imputations;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    /**
+     * @param mixed $avatar
+     */
+    public function setAvatar($avatar): void
+    {
+        $this->avatar = $avatar;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTeams()
+    {
+        return $this->teams;
+    }
+
+    /**
+     * @param mixed $teams
+     */
+    public function setTeams($teams): void
+    {
+        $this->teams = $teams;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSubtaskAssignees()
+    {
+        return $this->subtaskAssignees;
+    }
+
+    /**
+     * @param mixed $subtaskAssignees
+     */
+    public function setSubtaskAssignees($subtaskAssignees): void
+    {
+        $this->subtaskAssignees = $subtaskAssignees;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSubtaskFollowers()
+    {
+        return $this->subtaskFollowers;
+    }
+
+    /**
+     * @param mixed $subtaskFollowers
+     */
+    public function setSubtaskFollowers($subtaskFollowers): void
+    {
+        $this->subtaskFollowers = $subtaskFollowers;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTaskAssignees()
+    {
+        return $this->taskAssignees;
+    }
+
+    /**
+     * @param mixed $taskAssignees
+     */
+    public function setTaskAssignees($taskAssignees): void
+    {
+        $this->taskAssignees = $taskAssignees;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTaskFollowers()
+    {
+        return $this->taskFollowers;
+    }
+
+    /**
+     * @param mixed $taskFollowers
+     */
+    public function setTaskFollowers($taskFollowers): void
+    {
+        $this->taskFollowers = $taskFollowers;
+    }
+
 }

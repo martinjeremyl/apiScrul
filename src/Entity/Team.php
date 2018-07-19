@@ -51,4 +51,108 @@ class Team
      * @ORM\Column(type="text")
      */
     private $description;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Project", mappedBy="teams")
+     */
+    private $projects;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="teams")
+     * @ORM\JoinTable(
+     *  name="team_members",
+     *  joinColumns={
+     *      @ORM\JoinColumn(name="team_id", referencedColumnName="id")
+     *  },
+     *  inverseJoinColumns={
+     *      @ORM\JoinColumn(name="member_id", referencedColumnName="id")
+     *  }
+     * )
+     */
+    private $members;
+
+    public function __construct() {
+        $this->members = new ArrayCollection();
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function setDescription(string $description): void
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProjects()
+    {
+        return $this->projects;
+    }
+
+    /**
+     * @param mixed $projects
+     */
+    public function setProjects($projects): void
+    {
+        $this->projects = $projects;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMembers()
+    {
+        return $this->members;
+    }
+
+    /**
+     * @param mixed $members
+     */
+    public function setMembers($members): void
+    {
+        $this->members = $members;
+    }
+
 }

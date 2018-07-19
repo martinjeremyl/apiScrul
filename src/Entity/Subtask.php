@@ -11,6 +11,7 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Class Subtask is a task relative to another task
@@ -58,4 +59,135 @@ class Subtask
      * @ORM\ManyToOne(targetEntity="Task", inversedBy="subtasks")
      */
     public $task;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="subtaskAssignees")
+     * @ORM\JoinTable(
+     *  name="subtask_assignees",
+     *  joinColumns={
+     *      @ORM\JoinColumn(name="subtask_id", referencedColumnName="id")
+     *  },
+     *  inverseJoinColumns={
+     *      @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *  }
+     * )
+     */
+    private $assignees;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="subtaskFollowers")
+     * @ORM\JoinTable(
+     *  name="subtask_followers",
+     *  joinColumns={
+     *      @ORM\JoinColumn(name="subtask_id", referencedColumnName="id")
+     *  },
+     *  inverseJoinColumns={
+     *      @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *  }
+     * )
+     */
+    private $followers;
+
+    public function __construct() {
+        $this->assignees = new ArrayCollection();
+        $this->followers = new ArrayCollection();
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function setDescription(string $description): void
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * @return Project
+     */
+    public function getTask(): Project
+    {
+        return $this->task;
+    }
+
+    /**
+     * @param Project $task
+     */
+    public function setTask(Project $task): void
+    {
+        $this->task = $task;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAssignees()
+    {
+        return $this->assignees;
+    }
+
+    /**
+     * @param mixed $assignees
+     */
+    public function setAssignees($assignees): void
+    {
+        $this->assignees = $assignees;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFollowers()
+    {
+        return $this->followers;
+    }
+
+    /**
+     * @param mixed $followers
+     */
+    public function setFollowers($followers): void
+    {
+        $this->followers = $followers;
+    }
+
+
 }

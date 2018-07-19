@@ -56,6 +56,11 @@ class Document
     public $task;
 
     /**
+     * @ORM\OneToOne(targetEntity="User", mappedBy="avatar")
+     */
+    public $user;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -103,5 +108,36 @@ class Document
         $this->file = $file;
     }
 
-    
+    /**
+     * @return Task
+     */
+    public function getTask(): Task
+    {
+        return $this->task;
+    }
+
+    /**
+     * @param Task $task
+     */
+    public function setTask(Task $task): void
+    {
+        $this->task = $task;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user): void
+    {
+        $this->user = $user;
+    }
+
 }

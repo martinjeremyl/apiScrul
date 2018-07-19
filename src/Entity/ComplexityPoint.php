@@ -79,5 +79,20 @@ class ComplexityPoint
         $this->value = $value;
     }
 
+    /**
+     * @return Task[]
+     */
+    public function getTasks(): array
+    {
+        return $this->tasks;
+    }
+
+    /**
+     * @param Task[] $tasks
+     */
+    public function setTasks(array $tasks): void
+    {
+        $this->tasks = $tasks;
+    }
 
 }
