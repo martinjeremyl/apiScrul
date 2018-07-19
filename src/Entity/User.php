@@ -17,43 +17,48 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use ApiPlatform\Core\Annotation\ApiSubresource;
 /**
  * @ORM\Entity
- * @ApiResource(
- *     normalizationContext={"groups"={"user", "user:read"}},
- *     denormalizationContext={"groups"={"user", "user:write"}}
- * )
+ * @ApiResource
  */
 class User implements UserInterface, \Serializable
 {
     /**
-     * @ORM\Column(type="integer")
      * @ORM\Id
+     * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=25, unique=true)
-     * @Groups({"user"})
-     */
-    private $username;
-
-    /**
-     * @ORM\Column(type="string", length=64)
-     * @Groups({"user:write"})
-     */
-    private $password;
-
-    /**
-     * @ORM\Column(type="string", length=254, unique=true)
-     * @Groups({"user"})
+     * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Email()
      */
     private $email;
 
     /**
-     * @ORM\Column(name="is_active", type="boolean")
-     * @Groups({"user"})
+     * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\NotBlank()
      */
-    private $isActive;
+    private $username;
+
+    /**
+     * @Assert\NotBlank()
+     * @Assert\Length(max=4096)
+     */
+    private $plainPassword;
+
+    /**
+     * The below length depends on the "algorithm" you use for encoding
+     * the password, but this works well with bcrypt.
+     *
+     * @ORM\Column(type="string", length=64)
+     */
+    private $password;
+
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $roles;
 
     /**
      * @var Imputation[] List of imputations.
@@ -310,6 +315,22 @@ class User implements UserInterface, \Serializable
     public function setTaskFollowers($taskFollowers): void
     {
         $this->taskFollowers = $taskFollowers;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param mixed $plainPassword
+     */
+    public function setPlainPassword($plainPassword): void
+    {
+        $this->plainPassword = $plainPassword;
     }
 
 }
