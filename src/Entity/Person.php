@@ -103,7 +103,6 @@ class Person implements UserInterface, \Serializable
 
     public function __construct()
     {
-        $this->isActive = true;
         $this->imputations = new ArrayCollection();
         $this->teams = new ArrayCollection();
         $this->subtaskAssignees = new ArrayCollection();
@@ -198,22 +197,6 @@ class Person implements UserInterface, \Serializable
     public function setEmail($email): void
     {
         $this->email = $email;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getisActive()
-    {
-        return $this->isActive;
-    }
-
-    /**
-     * @param mixed $isActive
-     */
-    public function setIsActive($isActive): void
-    {
-        $this->isActive = $isActive;
     }
 
     /**
