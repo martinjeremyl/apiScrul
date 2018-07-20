@@ -82,22 +82,22 @@ class Person implements UserInterface, \Serializable
     private $teams;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Team", mappedBy="assignees")
+     * @ORM\ManyToMany(targetEntity="Subtask", mappedBy="assignees")
      */
     private $subtaskAssignees;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Team", mappedBy="followers")
+     * @ORM\ManyToMany(targetEntity="Subtask", mappedBy="followers")
      */
     private $subtaskFollowers;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Team", mappedBy="assignees")
+     * @ORM\ManyToMany(targetEntity="Task", mappedBy="assignees")
      */
     private $taskAssignees;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Team", mappedBy="followers")
+     * @ORM\ManyToMany(targetEntity="Task", mappedBy="followers")
      */
     private $taskFollowers;
 
