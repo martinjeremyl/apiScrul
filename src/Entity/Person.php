@@ -44,6 +44,16 @@ class Person implements UserInterface, \Serializable
     private $username;
 
     /**
+     * @ORM\Column(type="string", length=255, unique=true)
+     */
+    private $nom;
+
+    /**
+     * @ORM\Column(type="string", length=255, unique=true)
+     */
+    private $prenom;
+
+    /**
      * @Assert\NotBlank()
      * @Assert\Length(max=4096)
      */
@@ -343,4 +353,37 @@ class Person implements UserInterface, \Serializable
         $this->roles = $roles;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * @param mixed $nom
+     */
+    public function setNom($nom): void
+    {
+        $this->nom = $nom;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrenom()
+    {
+        return $this->prenom;
+    }
+
+    /**
+     * @param mixed $prenom
+     */
+    public function setPrenom($prenom): void
+    {
+        $this->prenom = $prenom;
+    }
+
+    
 }
